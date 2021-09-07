@@ -1,12 +1,10 @@
 from django.views import generic
 
-from.froms import InquiryForm
+from .forms import InquiryForm
 
-# Create your views here.
 class IndexView(generic.TemplateView):
-    template_name = "index.html"
+    template_name="index.html"
 
-
-class InquiryView(generic.FromView):
+class InquiryView(generic.FormView):
     template_name = "inquiry.html"
     form_class = InquiryForm

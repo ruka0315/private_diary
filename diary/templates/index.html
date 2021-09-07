@@ -6,29 +6,26 @@
 
 {% block header %}
 
+        <header class="masthead text-center text-white">
+            <div class="masthead-content">
+                <div class="container">
+                    <h1 class="masthead-heading mb-0">Private Diary</h1>
+                    <h2 class="masthead-subheading mb-0">あなた専用の日記保存サービス</h2>
+                    <a class="btn btn-primary btn-xl rounded-pill mt-5" href="#">LOG IN</a>
+                </div>
+            </div>
+            <div class="bg-circle-1 bg-circle"></div>
+            <div class="bg-circle-2 bg-circle"></div>
+            <div class="bg-circle-3 bg-circle"></div>
+            <div class="bg-circle-4 bg-circle"></div>
+        </header>
+        {% endblock %}
+        {% block contents %}
+        <section>
             <div class="container">
-                <div class="row">
-                    <div class="my-div-style">
-                        <form method="post">
-                            {% csrf_token %}
-
-                            {{ form.non_field_errors}}
-
-                            {% for field in form %}
-                            <div class="form-group row">
-                                <label for="{{ field.id_for_ladel }}" class="col-sm-4 col-form-label">
-                                    <strong>{{ field.label_tag}}</strong></label>
-
-
-
-
-
-
-
-
-                                    
-                            </div>
-                        </form>
+                <div class="row align-items-center">
+                    <div class="col-lg-6 order-lg-2">
+                        <div class="p-5"><img class="img-fluid rounded-circle" src="{% static 'img/01.jpg' %}" alt="" /></div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
                         <div class="p-5">
@@ -70,4 +67,3 @@
             </div>
         </section>
         {% endblock %}
-
