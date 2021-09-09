@@ -8,7 +8,7 @@ from django.views import generic
 
 from .forms import InquiryForm
 
-logging = logging.getLogger(__name__)
+loggng = logging.getLogger(__name__)
 
 class IndexView(generic.TemplateView):
     template_name="index.html"
@@ -21,5 +21,5 @@ class InquiryView(generic.FormView):
     def form_valid(self, form):
         form.send_email()
         messages.success(self.request, 'メッセージを送信しました。')
-        logger.info('Inquiry sent by {}'.format(form.cleaned_data['name']))
+        #logger.info('Inquiry sent by {}'.format(form.cleaned_data['name']))
         return super().form_valid(form)
