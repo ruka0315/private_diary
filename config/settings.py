@@ -158,11 +158,18 @@ ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_VERIFICATION = 'mandatory'
 ACCOUNT_EMAIL_REQUIRED = True
 
-# LOGIN_REDIRECT_URL = 'diary:index'
-# ACCOUNT_LOGOUT_REDIRECT_URL =  'account_login'
+LOGIN_REDIRECT_URL = 'diary:index'
+ACCOUNT_LOGOUT_REDIRECT_URL =  'account_login'
 
-# ACCOUNT_LOGOUT_ON_GET = True
+ACCOUNT_LOGOUT_ON_GET = True
 
-# ACCount_EMAIL_SUBJECT_PREFIX = ''
+ACCount_EMAIL_SUBJECT_PREFIX = ''
 
-# DEFAULT_FROM_EMAIL = 'admin@example.com'
+DEFAULT_FROM_EMAIL = 'admin@example.com'
+
+
+
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'madia')
+
+MEDIA_URL = '/media/'
