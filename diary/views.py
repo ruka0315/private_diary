@@ -31,6 +31,7 @@ class InquiryView(generic.FormView):
 class DiaryListView(LoginRequiredMixin, generic.ListView):
     model = Diary
     template_name = 'diary_list.html'
+    paginate_by = 2
     
 
     def get_queryset(self):
@@ -38,9 +39,10 @@ class DiaryListView(LoginRequiredMixin, generic.ListView):
         return diaries
 
 
-class DiaryListView(LoginRequiredMixin, generic.ListView):
+class DiaryDetailView(LoginRequiredMixin, generic.DetailView):
     model = Diary
     template_name = 'diary_detail.html'
+    
 
 
 class DiaryCreateView(LoginRequiredMixin, generic.CreateView):
