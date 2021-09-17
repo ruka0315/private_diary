@@ -7,18 +7,16 @@
         <meta name="description" content="" />
         <meta name="author" content="" />
         <title>{% block title %}{% endblock %}</title>
-        <!-- Bootstrap core CSS -->
         <link href="{% static 'vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
-        <!-- Custom styles for this template -->
+        <!-- Font Awesome icons (free version)-->
+        <!-- Google fonts-->
         <link href="https://fonts.googleapis.com/css?family=Catamaran:100,200,300,400,500,600,700,800,900" rel="stylesheet" />
         <link href="https://fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet" />
         <!-- Core theme CSS (includes Bootstrap)-->
         <link href="{% static 'css/styles.css' %}" rel="stylesheet" />
         <link rel="stylesheet" type="text/css" href="{% static 'css/mystyle.css' %}">
-        {% block head %}{% endblock %}
     </head>
     <body>
-        <div id="wrapper">　
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
             <div class="container">
@@ -27,50 +25,58 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ms-auto">
                         <li class="nav-item{% block active_inquiry %}{% endblock %}">
-                        <a class="nav-link" href="{% url 'diary:inquiry' %}">INQUIRY</a>
-                    </li>
+                            <a class="nav-link" href="{% url 'diary:inquiry' %}">INQUIRY</a>
+                        </li>
+                        {% if user.is_authenticated %}
+                          <li class="nav-item {% block active_diary_list %}{% endblock %}">
+                              <a class="nav-link" href="{% url 'diary:diary_list'%}">Diary LIST</a>
+                          </li>
+                        {% endif %}
                     </ul>
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Sign Up</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">Log In</a>
-                        </li>
-                    </ul>
+                        {% if user.is_authenticated %}
+                         <li class="nav-item">
+                            <a class="nav-link" href="{% url 'account_logout' %}">Log Out</a>
+                            </li>
+                        {% else %}
+                            <li class="nav-item {% block active_signup %}{% endblock %}">
+                                <a class="nav-link" href="{% url 'account_signup'%}">Sign Up</a>
+                            </li>
+                            <li class="nav-item{% block active_login %}{% endblock %}">
+                                <a class="nav-link" href="{% url 'account_login' %}">Log In</a>
+                            </li>
+                            {% endif %}
+                    </ul>    
                 </div>
             </div>
         </nav>
-        {% block header%}{% endblock %}
-
-        {% if messages %}
-         <div class="container">
-             <div class="row">
-                 <div class="my-div-style w-100">
-                    <ul class="messages" style="list-style: none;">
-                        {% for message in messages %}
-                        <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>
-                            {{ message }}
-                        </li>
-                        {% endfor %}
+        {% block header %}{% endblock %}
+        {%if messages%}
+        <div class="container">
+            <div class="row">
+                <div class="my-div-style w-100">
+                    <ul class="message" style="list-style: none;">
+                     {%for message in messages%}
+                     <li {%if message.tags%} class="{{message.tags}}"{%endif%}>
+                         {{message}}
+                    </li>
+                     {%endfor%}
                     </ul>
-                 </div>
-             </div>
-         </div>
+                </div>
+            </div>
+        </div>
         {% endif %}
 
-        {% block contends %}{% endblock %}
+
+        {% block contents %}{% endblock %}
         
         <!-- Footer-->
         <footer class="py-5 bg-black">
-            <div class="container">
-                <p class="m-0 text-center text-white small">Copyright &copy; Private Dairy 2019</p>
-            </div>
+            <div class="container px-5"><p class="m-0 text-center text-white small">Copyright &copy; Your Website 2021</p></div>
         </footer>
-        <!-- Bootstrap core JavaScript -->
+        <!-- Bootstrap core JS-->
         <script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
-        
+        <!-- Core theme JS-->
         <script src="{% static 'vender/bootstrap/js/bottstrap.bundle.min.js' %}"></script>
-        </div>
     </body>
 </html>

@@ -173,3 +173,8 @@ DEFAULT_FROM_EMAIL = 'admin@example.com'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'madia')
 
 MEDIA_URL = '/media/'
+
+
+
+
+LOGIN_REDIRECT_URL = 'diary:diary_list'
